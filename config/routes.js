@@ -29,7 +29,8 @@ module.exports.routes = {
    *                                                                          *
    ***************************************************************************/
 
-  "POST /d/tracking": {
+  "POST /tracking": {
+    controller: "TrackController",
     action: "location",
   },
 };

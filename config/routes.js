@@ -32,5 +32,6 @@ module.exports.routes = {
   "POST /tracking": {
     controller: "TrackController",
     action: "location",
+    csrf: false,
   },
 };

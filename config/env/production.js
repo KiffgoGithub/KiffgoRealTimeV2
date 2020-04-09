@@ -23,15 +23,17 @@ module.exports = {
   datastores: {
     default: {
       adapter: "sails-mongo",
-      url: process.env.MONGODB_URI,
+      url:
+        "mongodb://heroku_gsb54c37:rsnhbu6d5si30vqa12nbbkau46@ds253348.mlab.com:53348/heroku_gsb54c37",
       ssl: true,
     },
   },
 
   session: {
-    secret: process.env.SESSION_SECRET,
+    secret: "ab24ab301cdbcat31ca74d4f828dc374",
     adapter: "connect-redis", //'redis',
-    url: process.env.REDIS_URL,
+    url:
+      "redis://h:p10804ed3aa101a03c47e79ab200c94477bc544ed3e9b51debc16a5692f691c1f@ec2-108-128-150-19.eu-west-1.compute.amazonaws.com:9399",
     cookie: {
       secure: true,
     },
@@ -39,10 +41,13 @@ module.exports = {
 
   sockets: {
     adapter: "socket.io-redis",
-    url: process.env.REDIS_URL,
-    onlyAllowOrigins: ["https://api.kiffgo.com"],
+    url:
+      "redis://h:p10804ed3aa101a03c47e79ab200c94477bc544ed3e9b51debc16a5692f691c1f@ec2-108-128-150-19.eu-west-1.compute.amazonaws.com:9399",
+    onlyAllowOrigins: [
+      "http://www.mydeployedapp.com",
+      "http://mydeployedapp.com",
+    ],
   },
-
   /***************************************************************************
    * Set the port in the production environment to 80                        *
    ***************************************************************************/

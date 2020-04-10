@@ -7,38 +7,33 @@
 
 module.exports = {
   location: async (req, res) => {
+    const io = SocketIO("server");
+
     sails.log.debug(
       "TrackingController.location req.body: ",
       JSON.stringify(req.body)
     );
 
-    // Check bearer authorization token first
-    // 'authorization': "Bearer <a secret key>"
-    // if (
-    //   req.headers["authorization"].substr(7) !==
-    //   sails.config.transistorsoft.auth
-    // ) {
-    //   sails.log.warn("TrackingController.location authorization header wrong");
-    //   return res.badRequest();
-    // }
-
     const location = req.param("location");
     const userId = req.param("userId");
     const deliveryId = req.param("jobId") || req.param("deliveryId");
-    // try {
-    //   await DriverProfile.setLatestLocation(location.coords, userId);
-    // } catch (err) {
-    //   sails.log.error(
-    //     "TrackingController.location DriverProfile.setLatestLocation error: ",
-    //     err.message || err
-    //   );
-    // }
 
     // Check if a tracking event is in "allocation" mode
     const allocation = !!req.param("allocation");
     try {
       // This is for onJob tracking
-      await Track.add(location, userId, deliveryId, allocation);
+      const insertion = await Track.add(
+        location,
+        userId,
+        deliveryId,
+        allocation
+      );
+
+      if (insertion) {
+        io.on("connection", (socket) => {
+          socket.emit("track", "data inserted");
+        });
+      }
     } catch (err) {
       sails.log.error(
         "TrackingController.location Tracking.add error: ",

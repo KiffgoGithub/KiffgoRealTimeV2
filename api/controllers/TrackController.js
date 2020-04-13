@@ -29,12 +29,7 @@ module.exports = {
         allocation
       );
 
-      sails.sockets.broadcast(
-        "funSockets",
-        "hello",
-        { howdy: "hi there!" },
-        req
-      );
+      sails.sockets.broadcast("hello", { howdy: "hi there!" });
     } catch (err) {
       sails.log.error(
         "TrackingController.location Tracking.add error: ",

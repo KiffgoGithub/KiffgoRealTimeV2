@@ -7,7 +7,8 @@
 
 module.exports = {
   location: async (req, res) => {
-    const io = SocketIO("server");
+    // socket.io
+    var io = sails.io;
 
     sails.log.debug(
       "TrackingController.location req.body: ",
@@ -29,10 +30,12 @@ module.exports = {
         allocation
       );
 
+      // after insertion the sockets emits the info to the client.
       if (insertion) {
-        io.on("connection", (socket) => {
-          socket.emit("track", "data inserted");
-        });
+        // io.on("connection", (socket) => {
+        //   socket.emit("track", "data inserted");
+        // });
+        io.sockets.emit("track", { thisIs: "theMessage" });
       }
     } catch (err) {
       sails.log.error(

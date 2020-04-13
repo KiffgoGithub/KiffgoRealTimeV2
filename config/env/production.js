@@ -51,6 +51,7 @@ module.exports = {
     onlyAllowOrigins: [
       "http://www.mydeployedapp.com",
       "http://mydeployedapp.com",
+      "chrome-extension://fgponpodhbmadfljofbimhhlengambbn/index.html",
     ],
   },
   /***************************************************************************

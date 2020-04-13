@@ -25,9 +25,7 @@ module.exports.sockets = {
    * > https://sailsjs.com/docs/reference/web-sockets/socket-client           *
    *                                                                          *
    ***************************************************************************/
-
-  transports: ["websocket"],
-
+  // transports: [ 'websocket' ],
   /***************************************************************************
    *                                                                          *
    * `beforeConnect`                                                          *
@@ -39,7 +37,6 @@ module.exports.sockets = {
    * https://sailsjs.com/config/sockets#?beforeconnect                        *
    *                                                                          *
    ***************************************************************************/
-
   // beforeConnect: function(handshake, proceed) {
   //
   //   // `true` allows the socket to connect.
@@ -47,7 +44,6 @@ module.exports.sockets = {
   //   return proceed(undefined, true);
   //
   // },
-
   /***************************************************************************
    *                                                                          *
    * `afterDisconnect`                                                        *
@@ -56,7 +52,6 @@ module.exports.sockets = {
    * disconnects                                                              *
    *                                                                          *
    ***************************************************************************/
-
   // afterDisconnect: function(session, socket, done) {
   //
   //   // By default: do nothing.
@@ -64,13 +59,11 @@ module.exports.sockets = {
   //   return done();
   //
   // },
-
   /***************************************************************************
    *                                                                          *
    * Whether to expose a 'GET /__getcookie' route that sets an HTTP-only      *
    * session cookie.                                                          *
    *                                                                          *
    ***************************************************************************/
-
   // grant3rdPartyCookie: true,
 };

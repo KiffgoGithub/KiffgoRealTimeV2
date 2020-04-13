@@ -34,4 +34,8 @@ module.exports.routes = {
     action: "location",
     csrf: false,
   },
+  "POST /tracking": {
+    action: "abc/syz",
+    csrf: false,
+  },
 };

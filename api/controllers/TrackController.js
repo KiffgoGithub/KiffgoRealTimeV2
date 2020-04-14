@@ -7,8 +7,6 @@
 
 module.exports = {
   location: async (req, res) => {
-    const io = SocketIO("server");
-
     sails.log.debug(
       "TrackingController.location req.body: ",
       JSON.stringify(req.body)
@@ -21,6 +19,7 @@ module.exports = {
     // Check if a tracking event is in "allocation" mode
     const allocation = !!req.param("allocation");
     try {
+      sails.sockets.broadcast("test", { greeting: "Hola!" });
       // This is for onJob tracking
       const insertion = await Track.add(
         location,
@@ -28,20 +27,6 @@ module.exports = {
         deliveryId,
         allocation
       );
-
-      Track.add(location, userId, deliveryId, allocation).exec(
-        (err, tracking) => {
-          if (err) {
-            // Handle errors here!
-            return;
-          }
-          // Tell any socket watching the User model class
-          // that a new User has been created!
-          Track.publishCreate(tracking);
-        }
-      );
-
-      sails.sockets.broadcast("hello", { howdy: insertion });
     } catch (err) {
       sails.log.error(
         "TrackingController.location Tracking.add error: ",

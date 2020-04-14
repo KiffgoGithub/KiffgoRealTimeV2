@@ -6,13 +6,8 @@
  */
 
 module.exports = {
-  subscribe: function (req, res) {
-    if (!req.isSocket) {
-      return res.badRequest();
-    }
-
-    sails.sockets.join(req.socket, "track");
-
+  onConnect: function (req, res) {
+    sails.sockets.broadcast("hello", { howdy: "hi there!" });
     return res.ok();
   },
 };

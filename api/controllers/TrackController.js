@@ -19,7 +19,6 @@ module.exports = {
     // Check if a tracking event is in "allocation" mode
     const allocation = !!req.param("allocation");
     try {
-      sails.sockets.broadcast("test", { greeting: "Hola!" });
       // This is for onJob tracking
       const insertion = await Track.add(
         location,
@@ -27,6 +26,7 @@ module.exports = {
         deliveryId,
         allocation
       );
+      sails.sockets.blast("test", { location, userId, deliveryId, allocation });
     } catch (err) {
       sails.log.error(
         "TrackingController.location Tracking.add error: ",

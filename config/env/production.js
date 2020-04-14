@@ -48,7 +48,7 @@ module.exports = {
     adapter: "socket.io-redis",
     url:
       "redis://h:p10804ed3aa101a03c47e79ab200c94477bc544ed3e9b51debc16a5692f691c1f@ec2-108-128-150-19.eu-west-1.compute.amazonaws.com:9399",
-    onlyAllowOrigins: ["https://www.websocket.org"],
+    onlyAllowOrigins: ["http://localhost:3000"],
   },
   /***************************************************************************
    * Set the port in the production environment to 80                        *

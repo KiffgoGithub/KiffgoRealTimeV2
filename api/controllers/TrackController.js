@@ -29,7 +29,19 @@ module.exports = {
         allocation
       );
 
-      sails.sockets.broadcast("hello", { howdy: "hi there!" });
+      Track.add(location, userId, deliveryId, allocation).exec(
+        (err, tracking) => {
+          if (err) {
+            // Handle errors here!
+            return;
+          }
+          // Tell any socket watching the User model class
+          // that a new User has been created!
+          Track.publishCreate(tracking);
+        }
+      );
+
+      sails.sockets.broadcast("hello", { howdy: insertion });
     } catch (err) {
       sails.log.error(
         "TrackingController.location Tracking.add error: ",
@@ -54,5 +66,14 @@ module.exports = {
       JSON.stringify(req.body)
     );
     return res.json({ success: true });
+  },
+  subscribe: function (req, res) {
+    if (!req.isSocket) {
+      return res.badRequest();
+    }
+
+    sails.sockets.join(req.socket, "track");
+
+    return res.ok();
   },
 };

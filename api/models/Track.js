@@ -49,6 +49,11 @@ module.exports = {
     },
   },
 
+  afterCreate: function (entry, cb) {
+    sails.sockets.broadcast("track", "new_entry", entry);
+    cb();
+  },
+
   add: async (location, userId, deliveryId, allocation) => {
     if (!userId) {
       throw new Error("Tracking.add userId is not defined");

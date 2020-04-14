@@ -25,7 +25,7 @@ module.exports.sockets = {
    * > https://sailsjs.com/docs/reference/web-sockets/socket-client           *
    *                                                                          *
    ***************************************************************************/
-  // transports: [ 'websocket' ],
+  transports: ["websocket"],
   /***************************************************************************
    *                                                                          *
    * `beforeConnect`                                                          *
@@ -37,6 +37,13 @@ module.exports.sockets = {
    * https://sailsjs.com/config/sockets#?beforeconnect                        *
    *                                                                          *
    ***************************************************************************/
+
+  // Being called when connection gets established
+  beforeConnect: function (handshake, proceed) {
+    console.log("Socket gets connected");
+    return proceed(undefined, true);
+  },
+
   // beforeConnect: function(handshake, proceed) {
   //
   //   // `true` allows the socket to connect.
@@ -52,6 +59,13 @@ module.exports.sockets = {
    * disconnects                                                              *
    *                                                                          *
    ***************************************************************************/
+
+  // Being called when connection gets detached
+  afterDisconnect: function (session, socket, done) {
+    sails.log("socket disconnected for socket id ", socket.id);
+    return done();
+  },
+
   // afterDisconnect: function(session, socket, done) {
   //
   //   // By default: do nothing.

@@ -36,7 +36,7 @@ module.exports.routes = {
   },
   "GET /test": {
     controller: "SocketConnectionController",
-    action: "onConnect",
+    action: "subscribe",
     csrf: false,
   },
 };

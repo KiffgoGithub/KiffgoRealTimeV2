@@ -20,13 +20,12 @@ module.exports = {
     const allocation = !!req.param("allocation");
     try {
       // This is for onJob tracking
-      const insertion = await Track.add(
-        location,
-        userId,
-        deliveryId,
-        allocation
-      );
-      sails.sockets.blast("test", { location, userId, deliveryId, allocation });
+      const insertion = await Track.create({
+        location: location,
+        userId: userId,
+        owner: deliveryId,
+      });
+      sails.sockets.blast("test", { location, userId, deliveryId });
     } catch (err) {
       sails.log.error(
         "TrackingController.location Tracking.add error: ",

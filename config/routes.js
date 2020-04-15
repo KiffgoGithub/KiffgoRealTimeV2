@@ -32,7 +32,7 @@ module.exports.routes = {
   "POST /tracking": {
     controller: "TrackController",
     action: "location",
-    csrf: false,
+    csrf: true,
   },
   "GET /test": {
     controller: "SocketConnectionController",

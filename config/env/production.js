@@ -36,7 +36,7 @@ module.exports = {
 
   session: {
     secret: "ab24ab301cdbcat31ca74d4f828dc374",
-    adapter: "connect-redis", //'redis',
+    adapter: "@sailshq/connect-redis", //'redis',
     url:
       "redis://h:p10804ed3aa101a03c47e79ab200c94477bc544ed3e9b51debc16a5692f691c1f@ec2-108-128-150-19.eu-west-1.compute.amazonaws.com:9399",
     cookie: {

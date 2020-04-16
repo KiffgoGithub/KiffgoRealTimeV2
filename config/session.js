@@ -26,6 +26,7 @@ module.exports.session = {
    ***************************************************************************/
 
   cookie: {
+    domain: "https://kiffgo-development.herokuapp.com",
     maxAge: 24 * 60 * 60 * 1000,
     // maxAge: 60000
     // previous value 24 * 60 * 60 * 1000,

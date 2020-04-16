@@ -8,7 +8,7 @@
 module.exports = {
   location: async (req, res) => {
     //request
-    return res.json(req);
+    return res.send(req);
 
     sails.log.debug(
       "TrackingController.location req.body: ",

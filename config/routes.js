@@ -32,7 +32,11 @@ module.exports.routes = {
   "POST /tracking": {
     controller: "TrackController",
     action: "location",
-    csrf: false,
+    csrf: true,
+    cors: {
+      allowOrigins: ["https://kiffgo-development.herokuapp.com"],
+      allowCredentials: true,
+    },
   },
 
   "GET /test": {

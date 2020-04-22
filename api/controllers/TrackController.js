@@ -10,10 +10,7 @@ module.exports = {
     //request
     // console.log(JSON.stringify(req);
 
-    sails.log.debug(
-      "TrackingController.location req.body: ",
-      JSON.stringify(req.body)
-    );
+    //console.log("socket: ", req.socket.locals);
 
     const location = req.param("location");
     const userId = req.param("userId");
@@ -28,7 +25,9 @@ module.exports = {
         userId: userId,
         owner: deliveryId,
       });
+
       sails.sockets.blast("test", { location, userId, deliveryId });
+      sails.sockets.broadcast("testroom", "something");
     } catch (err) {
       sails.log.error(
         "TrackingController.location Tracking.add error: ",

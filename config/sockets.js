@@ -41,8 +41,15 @@ module.exports.sockets = {
   // Being called when connection gets established
   beforeConnect: function (handshake, proceed) {
     console.log("Socket gets connected");
+    // console.log(handshake);
     return proceed(undefined, true);
   },
+
+  // onConnect: function (handshake, proceed) {
+  //   console.log("Socket is now connected");
+  //   console.log(handshake, proceed.socket.id);
+  //   return true;
+  // },
 
   // beforeConnect: function(handshake, proceed) {
   //

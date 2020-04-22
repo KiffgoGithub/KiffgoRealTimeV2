@@ -9,8 +9,7 @@
  * https://sailsjs.com/config/bootstrap
  */
 
-module.exports.bootstrap = async function() {
-
+module.exports.bootstrap = async function () {
   // By convention, this is a good place to set up fake data during development.
   //
   // For example:
@@ -27,4 +26,9 @@ module.exports.bootstrap = async function() {
   // ]);
   // ```
 
+  sails.io.on("connect", function (socket) {
+    socket.on("test", function (soc) {
+      console.log({ socketID_hai: socket.id });
+    });
+  });
 };

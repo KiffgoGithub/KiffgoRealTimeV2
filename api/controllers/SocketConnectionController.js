@@ -7,7 +7,12 @@
 
 module.exports = {
   onConnect: function (req, res) {
-    sails.sockets.broadcast("hello", { howdy: "hi there!" });
+    console.log("req test");
+    // sails.sockets.join(req, "testroom");
+    // sails.sockets.broadcast("testroom", "testevnt", {
+    //   someData: "can also be just string instead of obj, i prefer objects...",
+    // });
+
     return res.ok();
   },
 };

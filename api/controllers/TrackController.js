@@ -14,6 +14,7 @@ module.exports = {
 
     const location = req.param("location");
     const userId = req.param("userId");
+    const dashboardUser = req.param("dashboardUser");
     const deliveryId = req.param("jobId") || req.param("deliveryId");
 
     // Check if a tracking event is in "allocation" mode
@@ -30,10 +31,11 @@ module.exports = {
 
       //sails.sockets.blast("test", { location, userId, deliveryId });
       sails.sockets.join(roomInfo.socketId, roomInfo.roomName);
-      sails.sockets.broadcast(roomInfo.roomName, "location", {
-        location,
-        userId,
-        deliveryId,
+      sails.sockets.broadcast(roomInfo.roomName, "trackingInfo", {
+        location: location,
+        userId: userId,
+        deliveryId: deliveryId,
+        dashboardUser: dashboardUser,
       });
     } catch (err) {
       sails.log.error(

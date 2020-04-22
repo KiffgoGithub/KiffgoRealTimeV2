@@ -26,8 +26,8 @@ module.exports.bootstrap = async function () {
   // ]);
   // ```
 
-  sails.io.on("connect", async function (socket) {
-    socket.on("business", async function (soc) {
+  sails.io.on("connect", async (socket) => {
+    socket.on("business", async (soc) => {
       sails.log.debug(
         "Business Socket",
         JSON.stringify({ business_socketID: socket.id })
@@ -39,7 +39,7 @@ module.exports.bootstrap = async function () {
         roomName: "business-" + soc.userID,
       });
     });
-    socket.on("kiffgo", async function (soc) {
+    socket.on("kiffgo", async (soc) => {
       sails.sockets.join(soc.userID, "kiffgo-" + soc.userID);
       await SocketInfo.create({
         socketId: socket.id,

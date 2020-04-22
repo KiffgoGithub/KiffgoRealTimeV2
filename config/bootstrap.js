@@ -28,7 +28,7 @@ module.exports.bootstrap = async function () {
 
   sails.io.on("connect", function (socket) {
     socket.on("test", function (soc) {
-      sails.debug.log({ socketID_hai: socket.id });
+      console.log({ socketID_hai: socket.id });
     });
   });
 };

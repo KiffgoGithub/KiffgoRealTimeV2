@@ -33,9 +33,19 @@ module.exports.bootstrap = async function () {
         JSON.stringify({ business_socketID: socket.id })
       );
       sails.sockets.join(soc.userID, "business-" + soc.userID);
+      SocketInfo.create({
+        socketId: socket.id,
+        userId: soc.userID,
+        roomName: "business-" + soc.userID,
+      });
     });
     socket.on("kiffgo", function (soc) {
       sails.sockets.join(soc.userID, "kiffgo-" + soc.userID);
+      SocketInfo.create({
+        socketId: socket.id,
+        userId: soc.userID,
+        roomName: "kiffgo-" + soc.userID,
+      });
       sails.log.debug(
         "Kiffgo Socket",
         JSON.stringify({ kiffgo_socketID: socket.id })

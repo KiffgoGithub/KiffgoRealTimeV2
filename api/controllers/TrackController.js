@@ -26,8 +26,15 @@ module.exports = {
         owner: deliveryId,
       });
 
-      sails.sockets.blast("test", { location, userId, deliveryId });
-      sails.sockets.broadcast("testroom", "something");
+      const roomInfo = await SocketInfo.findOne({ userId: userId });
+
+      //sails.sockets.blast("test", { location, userId, deliveryId });
+      sails.sockets.join(roomInfo.socketId, roomInfo.roomName);
+      sails.sockets.broadcast(roomInfo.roomName, "location", {
+        location,
+        userId,
+        deliveryId,
+      });
     } catch (err) {
       sails.log.error(
         "TrackingController.location Tracking.add error: ",

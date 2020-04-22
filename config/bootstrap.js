@@ -40,7 +40,7 @@ module.exports.bootstrap = async function () {
       });
     });
     socket.on("kiffgo", async (soc) => {
-      sails.sockets.join(soc.userID, "kiffgo-" + soc.userID);
+      sails.sockets.join(soc.userID, "kiffgo");
       await SocketInfo.create({
         socketId: socket.id,
         userId: soc.userID,

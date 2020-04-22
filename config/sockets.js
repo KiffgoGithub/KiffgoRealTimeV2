@@ -68,8 +68,9 @@ module.exports.sockets = {
    ***************************************************************************/
 
   // Being called when connection gets detached
-  afterDisconnect: function (session, socket, done) {
+  afterDisconnect: async function (session, socket, done) {
     sails.log("socket disconnected for socket id ", socket.id);
+    await SocketInfo.destroyOne({ socketId: socket.id });
     return done();
   },
 

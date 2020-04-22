@@ -30,7 +30,7 @@ module.exports = {
       const roomInfo = await SocketInfo.findOne({ userId: businessId });
       socketRooms = ["kiffgo"];
 
-      if (roomInfo) {
+      if (roomInfo && roomInfo.roomName !== "kiffgo") {
         socketRooms.push(roomInfo.roomName);
       }
 

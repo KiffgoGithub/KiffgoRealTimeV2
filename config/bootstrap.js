@@ -44,7 +44,7 @@ module.exports.bootstrap = async function () {
       await SocketInfo.create({
         socketId: socket.id,
         userId: soc.userID,
-        roomName: "kiffgo-" + soc.userID,
+        roomName: "kiffgo",
       });
       sails.log.debug(
         "Kiffgo Socket",

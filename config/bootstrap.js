@@ -28,10 +28,16 @@ module.exports.bootstrap = async function () {
 
   sails.io.on("connect", function (socket) {
     socket.on("business", function (soc) {
-      console.log({ business_socketID: socket.id });
+      sails.log.debug(
+        "Business Socket",
+        JSON.stringify({ business_socketID: socket.id })
+      );
     });
     socket.on("kiffgo", function (soc) {
-      console.log({ kiffgo_socketID: socket.id });
+      sails.log.debug(
+        "Kiffgo Socket",
+        JSON.stringify({ kiffgo_socketID: socket.id })
+      );
     });
   });
 };

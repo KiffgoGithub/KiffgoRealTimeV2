@@ -32,7 +32,7 @@ module.exports.bootstrap = async function () {
         "Business Socket",
         JSON.stringify({ business_socketID: socket.id })
       );
-      sails.log.debug("Business Socket", JSON.stringify({ business_obj: soc }));
+      sails.sockets.join(soc.userID, "business-" + soc.userID);
     });
     socket.on("kiffgo", function (soc) {
       sails.log.debug(

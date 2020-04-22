@@ -29,10 +29,10 @@ module.exports = {
 
       const roomInfo = await SocketInfo.findOne({ userId: businessId });
 
-      sails.sockets.blast("trackingInfo", { location, userId, deliveryId });
+      //sails.sockets.blast("test", { location, userId, deliveryId });
       console.log(roomInfo);
       sails.sockets.join(roomInfo.socketId, roomInfo.roomName);
-      sails.sockets.broadcast([roomInfo, "kiffgo"].roomName, "trackingInfo", {
+      sails.sockets.broadcast([roomInfo, "kiffgo"], roomName, "trackingInfo", {
         location: location,
         userId: userId,
         deliveryId: deliveryId,

@@ -32,16 +32,11 @@ module.exports = {
       //sails.sockets.blast("test", { location, userId, deliveryId });
       console.log(roomInfo);
       sails.sockets.join(roomInfo.socketId, roomInfo.roomName);
-      sails.sockets.broadcast(
-        [roomInfo.roomName, "kiffgo"],
-        roomName,
-        "trackingInfo",
-        {
-          location: location,
-          userId: userId,
-          deliveryId: deliveryId,
-        }
-      );
+      sails.sockets.broadcast(roomInfo.roomName, "trackingInfo", {
+        location: location,
+        userId: userId,
+        deliveryId: deliveryId,
+      });
     } catch (err) {
       sails.log.error(
         "TrackingController.location Tracking.add error: ",

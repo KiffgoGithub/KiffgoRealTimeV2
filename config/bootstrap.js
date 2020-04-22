@@ -35,6 +35,7 @@ module.exports.bootstrap = async function () {
       sails.sockets.join(soc.userID, "business-" + soc.userID);
     });
     socket.on("kiffgo", function (soc) {
+      sails.sockets.join(soc.userID, "kiffgo-" + soc.userID);
       sails.log.debug(
         "Kiffgo Socket",
         JSON.stringify({ kiffgo_socketID: socket.id })

@@ -23,14 +23,14 @@ module.exports = {
   datastores: {
     default: {
       adapter: "sails-mongoose",
-      // url:
-      //   "mongodb://heroku_gsb54c37:rsnhbu6d5si30vqa12nbbkau46@ds253348.mlab.com:53348/heroku_gsb54c37",
+      url:
+        "mongodb://heroku_gsb54c37:rsnhbu6d5si30vqa12nbbkau46@ds253348.mlab.com:53348/heroku_gsb54c37",
 
-      host: "ds253348.mlab.com",
-      port: "53348",
-      user: "heroku_gsb54c37",
-      password: "rsnhbu6d5si30vqa12nbbkau46",
-      database: "heroku_gsb54c37",
+      // host: "ds253348.mlab.com",
+      // port: "53348",
+      // user: "heroku_gsb54c37",
+      // password: "rsnhbu6d5si30vqa12nbbkau46",
+      // database: "heroku_gsb54c37",
     },
   },
 

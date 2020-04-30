@@ -35,9 +35,8 @@ module.exports.routes = {
     csrf: false,
   },
 
-  "GET /test": {
-    controller: "SocketConnectionController",
-    action: "onConnect",
+  "POST /get-location": {
+    action: "user/get-current-location",
     csrf: false,
   },
 };

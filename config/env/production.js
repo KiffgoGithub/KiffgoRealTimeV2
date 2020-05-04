@@ -22,7 +22,7 @@ module.exports = {
 
   datastores: {
     default: {
-      adapter: "sails-mongoose",
+      adapter: "sails-mongo",
       // url:
       //   "mongodb://heroku_gsb54c37:rsnhbu6d5si30vqa12nbbkau46@ds253348.mlab.com:53348/heroku_gsb54c37",
 

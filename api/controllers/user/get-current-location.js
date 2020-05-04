@@ -13,27 +13,36 @@ module.exports = {
   exits: {},
 
   fn: async function (inputs, exits) {
-    // const track = await Track.find({
-    //   where: { userId: { in: inputs.drivers } },
-    // })
-    //   .sort("createdAt DESC")
-    //   .aggregate({ groupBy: "userId" });
+    const driverLocation = [];
+    const drivers = inputs.drivers;
 
-    var db = Track.getDatastore().manager;
+    try {
+      for (let i = 0; i < drivers.length; i++) {
+        const track = await Track.find({
+          select: "location",
+          where: { userId: drivers[i] },
+        })
+          .sort("createdAt DESC")
+          .limit(1);
+        if (track) {
+          driverLocation.push({
+            driverId: drivers[i],
+            location: {
+              lat: track[0].location.coords.latitude,
+              lng: track[0].location.coords.longitude,
+            },
+          });
+        }
+      }
+    } catch (err) {
+      sails.log.error("Driver location Error === :", err.message || err);
+    }
 
-    const track = db
-      .collection(Track.tableName)
-      .find({
-        userId: {
-          $in: inputs.drivers,
-        },
-      })
-      .sort({
-        createdAt: -1,
-      });
-
-    console.log(track);
-
-    return;
+    // Send response.
+    return exits.success({
+      status: true,
+      data: driverLocation,
+      message: "Drivers current location",
+    });
   },
 };

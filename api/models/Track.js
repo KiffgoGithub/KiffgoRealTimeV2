@@ -6,19 +6,19 @@
  */
 
 module.exports = {
-  schema: {
+  attributes: {
     location: {
-      type: Object,
+      type: "json",
       required: true,
     },
 
     userId: {
-      type: Number,
+      type: "number",
       required: true,
     },
 
     owner: {
-      type: Number,
+      type: "number",
       allowNull: true,
     },
   },

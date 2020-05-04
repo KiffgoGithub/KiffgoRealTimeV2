@@ -39,4 +39,9 @@ module.exports.routes = {
     action: "user/get-current-location",
     csrf: false,
   },
+
+  "POST /update-task": {
+    action: "task/update-task-status",
+    csrf: false,
+  },
 };

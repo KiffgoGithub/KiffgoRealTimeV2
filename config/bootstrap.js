@@ -47,36 +47,36 @@ module.exports.bootstrap = async function () {
         roomName: "kiffgo",
       });
 
-      // Get list of all Drivers on connection (only for kiffgo admins)
-      const test = await Track.native((err, collection) => {
-        if (err) return res.serverError(err);
-        collection
-          .aggregate([
-            {
-              $group: {
-                userId: "$userId",
-              },
-            },
-            {
-              $sort: {
-                createdAt: -1,
-              },
-            },
-          ])
-          .toArray((err, results) => {
-            if (err) return res.serverError(err);
-            return res.ok(results);
-          });
-      });
-      sails.log(test);
-      sails.sockets.broadcast("kiffgo", "allDrivers", {
-        task: inputs.task,
-      });
-
       sails.log.debug(
         "Kiffgo Socket",
         JSON.stringify({ kiffgo_socketID: socket.id })
       );
+    });
+
+    // Get list of all Drivers on connection (only for kiffgo admins)
+    const test = await Track.native((err, collection) => {
+      if (err) return res.serverError(err);
+      collection
+        .aggregate([
+          {
+            $group: {
+              userId: "$userId",
+            },
+          },
+          {
+            $sort: {
+              createdAt: -1,
+            },
+          },
+        ])
+        .toArray((err, results) => {
+          if (err) return res.serverError(err);
+          return res.ok(results);
+        });
+    });
+    sails.log(test);
+    sails.sockets.broadcast("kiffgo", "allDrivers", {
+      drivers: test,
     });
   });
 };

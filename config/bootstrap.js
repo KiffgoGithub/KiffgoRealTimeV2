@@ -54,8 +54,7 @@ module.exports.bootstrap = async function () {
     });
 
     // Get list of all Drivers on connection (only for kiffgo admins)
-    const test = await Track.native((err, collection) => {
-      if (err) return res.serverError(err);
+    const test = await Track.native((collection) => {
       collection
         .aggregate([
           {
@@ -69,10 +68,7 @@ module.exports.bootstrap = async function () {
             },
           },
         ])
-        .toArray((err, results) => {
-          if (err) return err;
-          return results;
-        });
+        .toArray();
     });
     sails.log(test);
     sails.sockets.broadcast("kiffgo", "allDrivers", {

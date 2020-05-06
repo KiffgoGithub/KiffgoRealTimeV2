@@ -70,8 +70,8 @@ module.exports.bootstrap = async function () {
           },
         ])
         .toArray((err, results) => {
-          if (err) return res.serverError(err);
-          return res.ok(results);
+          if (err) return err;
+          return results;
         });
     });
     sails.log(test);

@@ -238,6 +238,6 @@ module.exports.bootstrap = async function () {
       },
     ];
 
-    socket.in("kiffgo").emit("allDrivers", { drivers: "test" });
+    sails.sockets.broadcast("kiffgo", "allDrivers", { drivers: "test" });
   });
 };

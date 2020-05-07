@@ -28,9 +28,9 @@ module.exports.bootstrap = async function () {
 
   sails.io.on("connect", async (socket) => {
     socket.on("business", async (soc) => {
-      var check = await SocketIO.find({ userId: soc.userID });
+      var check = await SocketInfo.find({ userId: soc.userID });
       if (check) {
-        await SocketIO.destroy({ userId: soc.userID });
+        await SocketInfo.destroy({ userId: soc.userID });
       }
 
       sails.sockets.join(soc.userID, "business-" + soc.userID);
@@ -46,9 +46,9 @@ module.exports.bootstrap = async function () {
       );
     });
     socket.on("kiffgo", async (soc) => {
-      var check = await SocketIO.find({ userId: soc.userID });
+      var check = await SocketInfo.find({ userId: soc.userID });
       if (check) {
-        await SocketIO.destroy({ userId: soc.userID });
+        await SocketInfo.destroy({ userId: soc.userID });
       }
 
       sails.sockets.join(soc.userID, "kiffgo");

@@ -34,8 +34,6 @@ module.exports = {
         socketRooms.push(roomInfo.roomName);
       }
 
-      //sails.sockets.blast("test", { location, userId, deliveryId });
-      console.log(roomInfo);
       sails.sockets.join(roomInfo.socketId, roomInfo.roomName);
       sails.sockets.broadcast(socketRooms, "trackingInfo", {
         location: location,

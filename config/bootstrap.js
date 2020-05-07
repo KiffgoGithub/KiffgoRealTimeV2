@@ -59,9 +59,7 @@ module.exports.bootstrap = async function () {
       .collection(Track.tableName)
       .aggregate([
         {
-          $group: {
-            userId: "$userId",
-          },
+          $group: { _id: "$userId" },
         },
         {
           $sort: {

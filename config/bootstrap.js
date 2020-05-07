@@ -86,15 +86,13 @@ module.exports.bootstrap = async function () {
         },
         {
           $group: {
-            _id: "$userId",
-            location: { $last: "$loaction" },
+            location: { $last: "$location" },
             userID: { $last: "$userId" },
             owner: { $last: "$owner" },
           },
         },
         {
           $project: {
-            _id: "$userId",
             location: "$location",
             userID: "$userID",
             owner: "$owner",

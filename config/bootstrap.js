@@ -26,7 +26,7 @@ module.exports.bootstrap = async function () {
   // ]);
   // ```
 
-  sails.io.on("connect", async (socket) => {
+  sails.io.on("connect", async (x) => {
     socket.on("business", async (soc) => {
       var check = await SocketInfo.find({ userId: soc.userID });
       if (check) {
@@ -240,7 +240,7 @@ module.exports.bootstrap = async function () {
     sails.sockets.broadcast("kiffgo", "allDrivers", {
       drivers: test,
     });
-    io.sockets.emit("allDrivers", { drivers: test });
+    socket.emit("allDrivers", { drivers: test });
 
     // broadcast to a room (aka publish)
     // excluding yourself, if you're in it

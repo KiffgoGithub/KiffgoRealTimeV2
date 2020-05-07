@@ -27,7 +27,7 @@ module.exports = {
         owner: deliveryId,
       });
 
-      const roomInfo = await SocketInfo.findOne({ userId: businessId });
+      const roomInfo = await SocketInfo.find({ userId: businessId }).limit(1);
 
       sails.log({ checkthis: roomInfo });
       socketRooms = ["kiffgo"];

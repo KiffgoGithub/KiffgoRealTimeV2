@@ -86,6 +86,7 @@ module.exports.bootstrap = async function () {
         },
         {
           $group: {
+            _id: "$userId",
             location: { $last: "$location" },
             userID: { $last: "$userId" },
             owner: { $last: "$owner" },
@@ -93,6 +94,7 @@ module.exports.bootstrap = async function () {
         },
         {
           $project: {
+            _id: "$userId",
             location: "$location",
             userID: "$userID",
             owner: "$owner",

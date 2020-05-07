@@ -31,6 +31,8 @@ module.exports = {
               lat: track[0].location.coords.latitude,
               lng: track[0].location.coords.longitude,
             },
+            datetime: track[0].createdAt,
+            odometer: track[0].location.odometer,
           });
         }
       }

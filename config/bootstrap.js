@@ -239,9 +239,10 @@ module.exports.bootstrap = async function () {
     ];
 
     setTimeout(() => {
-      sails.sockets.broadcast("kiffgo", "allDrivers", {
+      sails.sockets.broadcast(["kiffgo"], "allDrivers", {
         drivers: test,
       });
+      sails.log("test this broadcast");
     }, 1500);
   });
 };

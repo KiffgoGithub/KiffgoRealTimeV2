@@ -28,18 +28,29 @@ module.exports.bootstrap = async function () {
 
   sails.io.on("connect", async (socket) => {
     socket.on("business", async (soc) => {
-      sails.log.debug(
-        "Business Socket",
-        JSON.stringify({ business_socketID: socket.id })
-      );
+      var check = await SocketIO.find({ userId: soc.userID });
+      if (check) {
+        await SocketIO.destroy({ userId: soc.userID });
+      }
+
       sails.sockets.join(soc.userID, "business-" + soc.userID);
       await SocketInfo.create({
         socketId: socket.id,
         userId: soc.userID,
         roomName: "business-" + soc.userID,
       });
+
+      sails.log.debug(
+        "Business Socket",
+        JSON.stringify({ business_socketID: socket.id })
+      );
     });
     socket.on("kiffgo", async (soc) => {
+      var check = await SocketIO.find({ userId: soc.userID });
+      if (check) {
+        await SocketIO.destroy({ userId: soc.userID });
+      }
+
       sails.sockets.join(soc.userID, "kiffgo");
       await SocketInfo.create({
         socketId: socket.id,

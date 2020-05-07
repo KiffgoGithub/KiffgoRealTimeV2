@@ -229,10 +229,12 @@ module.exports.bootstrap = async function () {
         userId: soc.userID,
         roomName: "kiffgo",
       });
+      setTimeout(() => {
+        sails.sockets.broadcast("kiffgo", "allDrivers", {
+          drivers: test,
+        });
+      }, 3000);
 
-      sails.sockets.broadcast("kiffgo", "allDrivers", {
-        drivers: test,
-      });
       sails.log("test this broadcast");
 
       sails.log.debug(

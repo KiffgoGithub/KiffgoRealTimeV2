@@ -26,7 +26,7 @@ module.exports.bootstrap = async function () {
   // ]);
   // ```
 
-  sails.io.on("connect", async (x) => {
+  sails.io.on("connect", async (socket) => {
     socket.on("business", async (soc) => {
       var check = await SocketInfo.find({ userId: soc.userID });
       if (check) {

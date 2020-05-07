@@ -73,7 +73,7 @@ module.exports.bootstrap = async function () {
 
     sails.log(start, end);
     var db = Track.getDatastore().manager;
-    const testing = await db
+    const drivers = await db
       .collection(Track.tableName)
       .aggregate([
         {
@@ -108,136 +108,140 @@ module.exports.bootstrap = async function () {
       ])
       .toArray();
 
-    sails.log(testing);
-    sails.sockets.broadcast("kiffgo", "allDrivers", {
-      drivers: [
-        {
-          location: {
-            event: "geofence",
-            is_moving: true,
-            uuid: "3c936447-5673-48ea-9feb-f854a649c8e2",
-            timestamp: "2019-07-17T07:36:42.000Z",
-            odometer: 528.9,
-            coords: {
-              latitude: 51.45821434322742,
-              longitude: 0.06421508552174945,
-              accuracy: 4,
-              speed: 7.31,
-              heading: 346.24,
-              altitude: 114.9,
-            },
-            activity: {
-              type: "still",
-              confidence: 100,
-            },
-            battery: {
-              is_charging: false,
-              level: 0.61,
-            },
-            geofence: {
-              identifier: "dropoff",
-              action: "ENTER",
-              extras: {
-                locationIdentifier: "dropoff",
-                jobId: 29,
-                userId: 264,
-              },
-            },
-            extras: {},
+    sails.log(drivers);
+    var test = [
+      {
+        location: {
+          event: "geofence",
+          is_moving: true,
+          uuid: "3c936447-5673-48ea-9feb-f854a649c8e2",
+          timestamp: "2019-07-17T07:36:42.000Z",
+          odometer: 528.9,
+          coords: {
+            latitude: 51.45821434322742,
+            longitude: 0.06421508552174945,
+            accuracy: 4,
+            speed: 7.31,
+            heading: 346.24,
+            altitude: 114.9,
           },
-          jobId: 24,
-          userId: 16,
-          driverDetails: {
-            name: "test",
-            phone: "123123123",
-            vehicleSize: "Large",
+          activity: {
+            type: "still",
+            confidence: 100,
           },
+          battery: {
+            is_charging: false,
+            level: 0.61,
+          },
+          geofence: {
+            identifier: "dropoff",
+            action: "ENTER",
+            extras: {
+              locationIdentifier: "dropoff",
+              jobId: 29,
+              userId: 264,
+            },
+          },
+          extras: {},
         },
-        {
-          location: {
-            event: "geofence",
-            is_moving: true,
-            uuid: "3c936447-5673-48ea-9feb-f854a649c8e2",
-            timestamp: "2019-07-17T07:36:42.000Z",
-            odometer: 528.9,
-            coords: {
-              latitude: 51.45821434322742,
-              longitude: 0.06421508552174945,
-              accuracy: 4,
-              speed: 7.31,
-              heading: 346.24,
-              altitude: 114.9,
-            },
-            activity: {
-              type: "still",
-              confidence: 100,
-            },
-            battery: {
-              is_charging: false,
-              level: 0.61,
-            },
-            geofence: {
-              identifier: "dropoff",
-              action: "ENTER",
-              extras: {
-                locationIdentifier: "dropoff",
-                jobId: 29,
-                userId: 264,
-              },
-            },
-            extras: {},
-          },
-          jobId: 24,
-          userId: 15,
-          driverDetails: {
-            name: "test",
-            phone: "123123123",
-            vehicleSize: "Large",
-          },
+        jobId: 24,
+        userId: 16,
+        driverDetails: {
+          name: "test",
+          phone: "123123123",
+          vehicleSize: "Large",
         },
-        {
-          location: {
-            event: "geofence",
-            is_moving: true,
-            uuid: "3c936447-5673-48ea-9feb-f854a649c8e2",
-            timestamp: "2019-07-17T07:36:42.000Z",
-            odometer: 528.9,
-            coords: {
-              latitude: 51.45821434322742,
-              longitude: 0.06421508552174945,
-              accuracy: 4,
-              speed: 7.31,
-              heading: 346.24,
-              altitude: 114.9,
-            },
-            activity: {
-              type: "still",
-              confidence: 100,
-            },
-            battery: {
-              is_charging: false,
-              level: 0.61,
-            },
-            geofence: {
-              identifier: "dropoff",
-              action: "ENTER",
-              extras: {
-                locationIdentifier: "dropoff",
-                jobId: 29,
-                userId: 264,
-              },
-            },
-            extras: {},
+      },
+      {
+        location: {
+          event: "geofence",
+          is_moving: true,
+          uuid: "3c936447-5673-48ea-9feb-f854a649c8e2",
+          timestamp: "2019-07-17T07:36:42.000Z",
+          odometer: 528.9,
+          coords: {
+            latitude: 51.45821434322742,
+            longitude: 0.06421508552174945,
+            accuracy: 4,
+            speed: 7.31,
+            heading: 346.24,
+            altitude: 114.9,
           },
-          jobId: 24,
-          userId: 14,
-          driverDetails: {
-            name: "test",
-            phone: "123123123",
-            vehicleSize: "Large",
+          activity: {
+            type: "still",
+            confidence: 100,
           },
+          battery: {
+            is_charging: false,
+            level: 0.61,
+          },
+          geofence: {
+            identifier: "dropoff",
+            action: "ENTER",
+            extras: {
+              locationIdentifier: "dropoff",
+              jobId: 29,
+              userId: 264,
+            },
+          },
+          extras: {},
         },
-      ],
-    });
+        jobId: 24,
+        userId: 15,
+        driverDetails: {
+          name: "test",
+          phone: "123123123",
+          vehicleSize: "Large",
+        },
+      },
+      {
+        location: {
+          event: "geofence",
+          is_moving: true,
+          uuid: "3c936447-5673-48ea-9feb-f854a649c8e2",
+          timestamp: "2019-07-17T07:36:42.000Z",
+          odometer: 528.9,
+          coords: {
+            latitude: 51.45821434322742,
+            longitude: 0.06421508552174945,
+            accuracy: 4,
+            speed: 7.31,
+            heading: 346.24,
+            altitude: 114.9,
+          },
+          activity: {
+            type: "still",
+            confidence: 100,
+          },
+          battery: {
+            is_charging: false,
+            level: 0.61,
+          },
+          geofence: {
+            identifier: "dropoff",
+            action: "ENTER",
+            extras: {
+              locationIdentifier: "dropoff",
+              jobId: 29,
+              userId: 264,
+            },
+          },
+          extras: {},
+        },
+        jobId: 24,
+        userId: 14,
+        driverDetails: {
+          name: "test",
+          phone: "123123123",
+          vehicleSize: "Large",
+        },
+      },
+    ];
+
+    setTimeout(() => {
+      sails.sockets.broadcast("kiffgo", "allDrivers", {
+        drivers: test,
+      });
+    }, 1500);
   });
 };

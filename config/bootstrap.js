@@ -94,22 +94,7 @@ module.exports.bootstrap = async function () {
         },
       ])
       .toArray();
-    // const test = await Track.native((collection) => {
-    //   collection
-    //     .aggregate([
-    //       {
-    //         $group: {
-    //           userId: "$userId",
-    //         },
-    //       },
-    //       {
-    //         $sort: {
-    //           createdAt: -1,
-    //         },
-    //       },
-    //     ])
-    //     .toArray();
-    // });
+
     sails.log(testing);
     // sails.sockets.broadcast("kiffgo", "allDrivers", {
     //   drivers: test,

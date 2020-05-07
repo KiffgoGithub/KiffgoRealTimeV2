@@ -58,7 +58,9 @@ module.exports.bootstrap = async function () {
     start.setHours(0, 0, 0, 0);
 
     var end = new Date();
-    end.setHours(23, 59, 59, 999);
+    end = ISODate(end.setHours(23, 59, 59, 999));
+
+    sails.log(start, end);
     var db = Track.getDatastore().manager;
     const testing = await db
       .collection(Track.tableName)

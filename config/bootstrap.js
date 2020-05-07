@@ -237,13 +237,6 @@ module.exports.bootstrap = async function () {
         },
       },
     ];
-    // sails.sockets.broadcast("kiffgo", "allDrivers", {
-    //   drivers: test,
-    // });
-    // socket.emit("allDrivers", { drivers: test });
-
-    // broadcast to a room (aka publish)
-    // excluding yourself, if you're in it
-    socket.broadcast.to("kiffgo").emit("allDrivers", { drivers: test });
+    socket.emit("allDrivers", { drivers: test });
   });
 };

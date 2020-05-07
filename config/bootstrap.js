@@ -80,7 +80,7 @@ module.exports.bootstrap = async function () {
           },
         },
       ])
-      .pretty();
+      .toArray();
     // const test = await Track.native((collection) => {
     //   collection
     //     .aggregate([

@@ -85,12 +85,25 @@ module.exports.bootstrap = async function () {
           },
         },
         {
-          $sort: {
-            createdAt: -1,
+          $group: {
+            _id: "$userId",
+            location: { $last: "$loaction" },
+            userID: { $last: "$userId" },
+            owner: { $last: "$owner" },
           },
         },
         {
-          $project: { $group: { _id: "$userId" }, location: -1 },
+          $project: {
+            _id: "$userId",
+            location: "$location",
+            userID: "$userID",
+            owner: "$owner",
+          },
+        },
+        {
+          $sort: {
+            createdAt: -1,
+          },
         },
       ])
       .toArray();

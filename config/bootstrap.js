@@ -68,8 +68,8 @@ module.exports.bootstrap = async function () {
 
     now = moment();
     console.log("now " + now.toString());
-    var start = now.startOf("day").unix();
-    var end = now.endOf("day").unix();
+    var start = now.startOf("day").valueOf().unix();
+    var end = now.endOf("day").valueOf().unix();
 
     sails.log(start, end);
     var db = Track.getDatastore().manager;

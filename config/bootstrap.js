@@ -54,10 +54,23 @@ module.exports.bootstrap = async function () {
     });
 
     // Get list of all Drivers on connection (only for kiffgo admins)
+    var start = new Date();
+    start.setHours(0, 0, 0, 0);
+
+    var end = new Date();
+    end.setHours(23, 59, 59, 999);
     var db = Track.getDatastore().manager;
     const testing = await db
       .collection(Track.tableName)
       .aggregate([
+        {
+          $match: {
+            createdAt: {
+              $gte: start,
+              $lte: end,
+            },
+          },
+        },
         {
           $group: { _id: "$userId" },
         },
@@ -67,7 +80,7 @@ module.exports.bootstrap = async function () {
           },
         },
       ])
-      .toArray();
+      .pretty();
     // const test = await Track.native((collection) => {
     //   collection
     //     .aggregate([

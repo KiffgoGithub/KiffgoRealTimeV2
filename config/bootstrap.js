@@ -90,7 +90,7 @@ module.exports.bootstrap = async function () {
           },
         },
         {
-          $group: { _id: "$userId", $last: { location: -1 } },
+          $project: { $group: { _id: "$userId" }, location: -1 },
         },
       ])
       .toArray();

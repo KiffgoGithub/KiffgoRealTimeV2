@@ -28,6 +28,8 @@ module.exports = {
       });
 
       const roomInfo = await SocketInfo.findOne({ userId: businessId });
+
+      sails.log({ checkthis: roomInfo });
       socketRooms = ["kiffgo"];
 
       if (roomInfo && roomInfo.roomName !== "kiffgo") {

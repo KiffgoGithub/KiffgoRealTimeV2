@@ -54,11 +54,11 @@ module.exports.bootstrap = async function () {
     });
 
     // Get list of all Drivers on connection (only for kiffgo admins)
-    var start = new Date();
-    start.setHours(0, 0, 0, 0);
 
-    var end = new Date();
-    end = ISODate(end.setHours(23, 59, 59, 999));
+    now = moment();
+    console.log("now " + now.toString());
+    var start = now.startOf("day").toISOString();
+    var end = now.endOf("day").toISOString();
 
     sails.log(start, end);
     var db = Track.getDatastore().manager;

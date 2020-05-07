@@ -19,7 +19,7 @@ module.exports = {
     try {
       for (let i = 0; i < drivers.length; i++) {
         const track = await Track.find({
-          select: "location",
+          select: ["location", "createdAt"],
           where: { userId: drivers[i] },
         })
           .sort("createdAt DESC")

@@ -243,6 +243,6 @@ module.exports.bootstrap = async function () {
         drivers: test,
       });
       sails.log("test this broadcast");
-    }, 1500);
+    }, 10000);
   });
 };

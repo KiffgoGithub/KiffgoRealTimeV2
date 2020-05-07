@@ -55,18 +55,21 @@ module.exports.bootstrap = async function () {
 
     // Get list of all Drivers on connection (only for kiffgo admins)
     var db = Track.getDatastore().manager;
-    const testing = await db.collection(Track.tableName).aggregate([
-      {
-        $group: {
-          userId: "$userId",
+    const testing = await db
+      .collection(Track.tableName)
+      .aggregate([
+        {
+          $group: {
+            userId: "$userId",
+          },
         },
-      },
-      {
-        $sort: {
-          createdAt: -1,
+        {
+          $sort: {
+            createdAt: -1,
+          },
         },
-      },
-    ]);
+      ])
+      .toArray();
     // const test = await Track.native((collection) => {
     //   collection
     //     .aggregate([
@@ -84,8 +87,8 @@ module.exports.bootstrap = async function () {
     //     .toArray();
     // });
     sails.log(testing);
-    sails.sockets.broadcast("kiffgo", "allDrivers", {
-      drivers: test,
-    });
+    // sails.sockets.broadcast("kiffgo", "allDrivers", {
+    //   drivers: test,
+    // });
   });
 };

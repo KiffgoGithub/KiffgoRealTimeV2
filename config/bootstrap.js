@@ -196,7 +196,7 @@ module.exports.bootstrap = async function () {
             $group: {
               _id: "$userId",
               location: { $last: "$location" },
-              userID: { $last: "$userId" },
+              userId: { $last: "$userId" },
               owner: { $last: "$owner" },
               businessId: { $last: "$businessId" },
               driverDetails: { $last: "$driverDetails" },
@@ -206,7 +206,7 @@ module.exports.bootstrap = async function () {
             $project: {
               _id: "$userId",
               location: "$location",
-              userID: "$userID",
+              userId: "$userID",
               jobId: "$owner",
               businessId: "$businessId",
               driverDetails: "$driverDetails",
@@ -257,7 +257,7 @@ module.exports.bootstrap = async function () {
             $group: {
               _id: "$userId",
               location: { $last: "$location" },
-              userID: { $last: "$userId" },
+              userId: { $last: "$userId" },
               owner: { $last: "$owner" },
               businessId: { $last: "$businessId" },
               driverDetails: { $last: "$driverDetails" },
@@ -267,7 +267,7 @@ module.exports.bootstrap = async function () {
             $project: {
               _id: "$userId",
               location: "$location",
-              userID: "$userID",
+              userId: "$userID",
               jobId: "$owner",
               businessId: "$businessId",
               driverDetails: "$driverDetails",

@@ -27,18 +27,26 @@ module.exports = {
         owner: deliveryId,
       });
 
-      const roomInfo = await SocketInfo.find({ userId: businessId }).limit(1);
-      // const kiffgoRoomInfo = await SocketInfo.find({ userId: businessId }).limit(1);
+      let socketRooms = ["kiffgo"];
 
-      // let socketId =
-      socketRooms = ["kiffgo"];
-
-      if (roomInfo && roomInfo.roomName !== "kiffgo") {
-        socketRooms.push(roomInfo.roomName);
-        // socketId = roomInfo.socketId
+      const kiffgoRoomInfo = await SocketInfo.find({
+        roomName: "kiffgo",
+      });
+      if (kiffgoRoomInfo) {
+        for (let i = 0; i < kiffgoRoomInfo.length; i++) {
+          sails.sockets.join(
+            kiffgoRoomInfo[i].socketId,
+            kiffgoRoomInfo[i].roomName
+          );
+        }
       }
 
-      // sails.sockets.join(roomInfo.socketId, roomInfo.roomName);
+      const roomInfo = await SocketInfo.find({ userId: businessId }).limit(1);
+      if (roomInfo && roomInfo.roomName !== "kiffgo") {
+        socketRooms.push(roomInfo.roomName);
+        sails.sockets.join(roomInfo.socketId, roomInfo.roomName);
+      }
+
       sails.sockets.broadcast(socketRooms, "trackingInfo", {
         location: location,
         userId: userId,

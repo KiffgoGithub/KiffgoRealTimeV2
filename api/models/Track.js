@@ -24,12 +24,12 @@ module.exports = {
 
     businessId: {
       type: "number",
-      allowNull: true,
+      required: true,
     },
 
     driverDetails: {
       type: "ref",
-      allowNull: true,
+      required: true,
     },
   },
 

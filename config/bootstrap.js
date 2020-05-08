@@ -220,6 +220,7 @@ module.exports.bootstrap = async function () {
         ])
         .toArray();
       socket.emit("allDrivers", { drivers: drivers });
+      console.log({ thisisBusiness: drivers });
     });
     socket.on("kiffgo", async (soc) => {
       var check = await SocketInfo.find({ userId: soc.userID });
@@ -280,6 +281,7 @@ module.exports.bootstrap = async function () {
         ])
         .toArray();
       socket.emit("allDrivers", { drivers: drivers });
+      console.log({ thisisKiffgo: drivers });
     });
   });
 };

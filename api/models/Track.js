@@ -21,6 +21,16 @@ module.exports = {
       type: "number",
       allowNull: true,
     },
+
+    businessId: {
+      type: "number",
+      allowNull: true,
+    },
+
+    driverDetails: {
+      type: "json",
+      allowNull: true,
+    },
   },
 
   afterCreate: function (entry, cb) {

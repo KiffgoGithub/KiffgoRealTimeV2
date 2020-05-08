@@ -177,6 +177,49 @@ module.exports.bootstrap = async function () {
         "Business Socket",
         JSON.stringify({ business_socketID: socket.id })
       );
+
+      // Get list of all Drivers on connection (only for kiffgo admins)
+      var db = Track.getDatastore().manager;
+      const drivers = await db
+        .collection(Track.tableName)
+        .aggregate([
+          {
+            $match: {
+              createdAt: {
+                $gte: start,
+                $lte: end,
+              },
+              businessId: soc.userID,
+            },
+          },
+          {
+            $group: {
+              _id: "$userId",
+              location: { $last: "$location" },
+              userID: { $last: "$userId" },
+              jobId: { $last: "$owner" },
+              businessId: { $last: "$businessId" },
+              driverDetails: { $last: "$driverDetails" },
+            },
+          },
+          {
+            $project: {
+              _id: "$userId",
+              location: "$location",
+              userID: "$userID",
+              jobId: "$owner",
+              businessId: "$businessId",
+              driverDetails: "$driverDetails",
+            },
+          },
+          {
+            $sort: {
+              createdAt: -1,
+            },
+          },
+        ])
+        .toArray();
+      socket.emit("allDrivers", { drivers: drivers });
     });
     socket.on("kiffgo", async (soc) => {
       var check = await SocketInfo.find({ userId: soc.userID });
@@ -214,7 +257,9 @@ module.exports.bootstrap = async function () {
               _id: "$userId",
               location: { $last: "$location" },
               userID: { $last: "$userId" },
-              owner: { $last: "$owner" },
+              jobId: { $last: "$owner" },
+              businessId: { $last: "$businessId" },
+              driverDetails: { $last: "$driverDetails" },
             },
           },
           {
@@ -222,7 +267,9 @@ module.exports.bootstrap = async function () {
               _id: "$userId",
               location: "$location",
               userID: "$userID",
-              owner: "$owner",
+              jobId: "$owner",
+              businessId: "$businessId",
+              driverDetails: "$driverDetails",
             },
           },
           {
@@ -232,7 +279,7 @@ module.exports.bootstrap = async function () {
           },
         ])
         .toArray();
-      socket.emit("allDrivers", { drivers: test });
+      socket.emit("allDrivers", { drivers: drivers });
     });
   });
 };

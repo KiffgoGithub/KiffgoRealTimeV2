@@ -28,7 +28,7 @@ module.exports = {
       //sails.sockets.blast("test", { location, userId, deliveryId });
       console.log(roomInfo);
       sails.sockets.join(roomInfo.socketId, roomInfo.roomName);
-      sails.sockets.broadcast(socketRooms, "taskUpdated", {
+      sails.sockets.broadcast(socketRooms, "taskDelay", {
         task: inputs.task,
       });
     } catch (err) {

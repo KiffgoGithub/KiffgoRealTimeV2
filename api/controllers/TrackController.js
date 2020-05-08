@@ -42,6 +42,7 @@ module.exports = {
       }
 
       const roomInfo = await SocketInfo.find({ userId: businessId }).limit(1);
+      console.log({ testingRoom: roomInfo });
       if (roomInfo && roomInfo.roomName !== "kiffgo") {
         socketRooms.push(roomInfo.roomName);
         sails.sockets.join(roomInfo.socketId, roomInfo.roomName);

@@ -207,7 +207,7 @@ module.exports.bootstrap = async function () {
               _id: "$userId",
               location: "$location",
               userID: "$userID",
-              owner: "$owner",
+              jobId: "$owner",
               businessId: "$businessId",
               driverDetails: "$driverDetails",
             },

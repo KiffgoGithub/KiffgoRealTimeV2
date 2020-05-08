@@ -258,7 +258,7 @@ module.exports.bootstrap = async function () {
               _id: "$userId",
               location: { $last: "$location" },
               userID: { $last: "$userId" },
-              jobId: { $last: "$owner" },
+              owner: { $last: "$owner" },
               businessId: { $last: "$businessId" },
               driverDetails: { $last: "$driverDetails" },
             },

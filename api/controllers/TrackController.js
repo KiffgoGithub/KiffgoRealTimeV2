@@ -28,14 +28,17 @@ module.exports = {
       });
 
       const roomInfo = await SocketInfo.find({ userId: businessId }).limit(1);
+      // const kiffgoRoomInfo = await SocketInfo.find({ userId: businessId }).limit(1);
 
+      // let socketId =
       socketRooms = ["kiffgo"];
 
       if (roomInfo && roomInfo.roomName !== "kiffgo") {
         socketRooms.push(roomInfo.roomName);
+        // socketId = roomInfo.socketId
       }
 
-      sails.sockets.join(roomInfo.socketId, roomInfo.roomName);
+      // sails.sockets.join(roomInfo.socketId, roomInfo.roomName);
       sails.sockets.broadcast(socketRooms, "trackingInfo", {
         location: location,
         userId: userId,

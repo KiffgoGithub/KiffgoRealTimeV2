@@ -8,7 +8,7 @@
 module.exports = {
   attributes: {
     location: {
-      type: "json",
+      type: "ref",
       required: true,
     },
 
@@ -28,7 +28,7 @@ module.exports = {
     },
 
     driverDetails: {
-      type: "json",
+      type: "ref",
       allowNull: true,
     },
   },

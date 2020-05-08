@@ -40,8 +40,8 @@ module.exports.routes = {
     csrf: false,
   },
 
-  "POST /update-task": {
-    action: "task/update-task-status",
+  "POST /task-delay": {
+    action: "task/delay",
     csrf: false,
   },
 };

@@ -1,7 +1,7 @@
 module.exports = {
-  friendlyName: "Update task status",
+  friendlyName: "Task delay",
 
-  description: "Update the task status and may also provide the delay time",
+  description: "sends the task delayed in minutes",
 
   inputs: {
     task: {

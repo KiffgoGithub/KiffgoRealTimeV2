@@ -40,10 +40,13 @@ module.exports = {
       sails.log.error("Driver location Error === :", err.message || err);
     }
 
+    // remove this after testing
+    const test = await Track.find({}).sort("createdAt DESC");
+
     // Send response.
     return exits.success({
       status: true,
-      data: driverLocation,
+      data: test,
       message: "Drivers current location",
     });
   },

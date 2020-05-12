@@ -24,9 +24,9 @@ module.exports = async (req, res, next) => {
         return next();
       }
 
-      return res.badRequest({ status: fasle, err: "Token invalid" });
+      return res.badRequest({ status: false, err: "Token invalid" });
     } else {
-      return res.badRequest({ status: fasle, err: "token required" });
+      return res.badRequest({ status: false, err: "token required" });
     }
   } else {
     return res.badRequest({ status: fasle, err: "unauthorized user" });

@@ -44,4 +44,14 @@ module.exports.routes = {
     action: "task/delay",
     csrf: false,
   },
+
+  "POST /task-added": {
+    action: "task/new-task-added",
+    csrf: false,
+  },
+
+  "POST /task-updated": {
+    action: "task/task-updated",
+    csrf: false,
+  },
 };

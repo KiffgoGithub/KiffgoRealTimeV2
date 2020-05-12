@@ -24,11 +24,11 @@ module.exports = async (req, res, next) => {
         return next();
       }
 
-      return res.json({ err: "Token invalid" });
+      return res.badRequest({ status: fasle, err: "Token invalid" });
     } else {
-      return res.json({ err: "token required" });
+      return res.badRequest({ status: fasle, err: "token required" });
     }
   } else {
-    return res.json({ err: "unauthorized user" });
+    return res.badRequest({ status: fasle, err: "unauthorized user" });
   }
 };

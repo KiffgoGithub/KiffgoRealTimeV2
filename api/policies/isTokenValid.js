@@ -29,6 +29,6 @@ module.exports = async (req, res, next) => {
       return res.badRequest({ status: false, err: "token required" });
     }
   } else {
-    return res.badRequest({ status: fasle, err: "unauthorized user" });
+    return res.badRequest({ status: false, err: "unauthorized user" });
   }
 };

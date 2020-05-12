@@ -30,25 +30,7 @@ module.exports = {
         driverDetails: driverDetails,
       });
 
-      let socketRooms = ["kiffgo"];
-
-      const kiffgoRoomInfo = await SocketInfo.find({
-        roomName: "kiffgo",
-      });
-      if (kiffgoRoomInfo) {
-        for (let i = 0; i < kiffgoRoomInfo.length; i++) {
-          sails.sockets.join(
-            kiffgoRoomInfo[i].socketId,
-            kiffgoRoomInfo[i].roomName
-          );
-        }
-      }
-
-      const roomInfo = await SocketInfo.find({ userId: businessId }).limit(1);
-      if (roomInfo && roomInfo[0].roomName !== "kiffgo") {
-        socketRooms.push(roomInfo[0].roomName);
-        sails.sockets.join(roomInfo[0].socketId, roomInfo[0].roomName);
-      }
+      const socketRooms = await sails.helpers.joinRoom(businessId);
 
       sails.sockets.broadcast(socketRooms, "trackingInfo", {
         location: location,

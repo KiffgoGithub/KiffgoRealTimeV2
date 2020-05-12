@@ -24,7 +24,7 @@ module.exports = {
 
     businessId: {
       type: "number",
-      required: true,
+      allowNull: true,
     },
 
     driverDetails: {

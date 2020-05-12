@@ -166,7 +166,7 @@ module.exports.bootstrap = async function () {
         await SocketInfo.destroy({ userId: soc.userID });
       }
 
-      soc.join("business-" + soc.userID);
+      sails.sockets.join(soc.userID, "business-" + soc.userID);
       await SocketInfo.create({
         socketId: socket.id,
         userId: soc.userID,
@@ -228,7 +228,7 @@ module.exports.bootstrap = async function () {
         await SocketInfo.destroy({ userId: soc.userID });
       }
 
-      soc.join("kiffgo");
+      sails.sockets.join(soc.userID, "kiffgo");
       await SocketInfo.create({
         socketId: socket.id,
         userId: soc.userID,
@@ -283,6 +283,5 @@ module.exports.bootstrap = async function () {
       socket.emit("allDrivers", { drivers: drivers });
       console.log({ thisisKiffgo: drivers });
     });
-    console.log({ allKiffgoClients: socket.clients("kiffgo") });
   });
 };

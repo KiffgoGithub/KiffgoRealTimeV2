@@ -6,7 +6,6 @@ module.exports = {
   inputs: {
     businessId: {
       type: "number",
-      required: true,
     },
   },
 
@@ -30,13 +29,15 @@ module.exports = {
         );
       }
     }
-
-    const roomInfo = await SocketInfo.find({ userId: inputs.businessId }).limit(
-      1
-    );
-    if (roomInfo && roomInfo[0].roomName !== "kiffgo") {
-      socketRooms.push(roomInfo[0].roomName);
-      sails.sockets.join(roomInfo[0].socketId, roomInfo[0].roomName);
+    if (inputs.businessId) {
+      const roomInfo = await SocketInfo.find({
+        userId: inputs.businessId,
+      }).limit(1);
+      console.log({ thisisatest: roomInfo });
+      if (roomInfo && roomInfo[0].roomName !== "kiffgo") {
+        socketRooms.push(roomInfo[0].roomName);
+        sails.sockets.join(roomInfo[0].socketId, roomInfo[0].roomName);
+      }
     }
 
     return exits.success(socketRooms);

@@ -34,7 +34,7 @@ module.exports = {
         userId: inputs.businessId,
       }).limit(1);
       console.log({ thisisatest: roomInfo });
-      if (roomInfo && roomInfo[0].roomName !== "kiffgo") {
+      if (!_.isEmpty(roomInfo) && roomInfo[0].roomName !== "kiffgo") {
         socketRooms.push(roomInfo[0].roomName);
         sails.sockets.join(roomInfo[0].socketId, roomInfo[0].roomName);
       }

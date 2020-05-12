@@ -13,6 +13,7 @@ module.exports = {
   exits: {},
 
   fn: async function (inputs, exits) {
+    sails.log.debug("get-current-location action Started");
     const driverLocation = [];
     const drivers = inputs.drivers;
 
@@ -37,10 +38,14 @@ module.exports = {
         }
       }
     } catch (err) {
-      sails.log.error("Driver location Error === :", err.message || err);
+      sails.log.error(
+        "get-current-location action:  Driver location Error === :",
+        err.message || err
+      );
     }
 
     // Send response.
+    sails.log.debug("get-current-location action Ended");
     return exits.success({
       status: true,
       data: driverLocation,

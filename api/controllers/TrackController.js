@@ -7,10 +7,7 @@
 
 module.exports = {
   location: async (req, res) => {
-    //request
-    // console.log(JSON.stringify(req);
-
-    //console.log("socket: ", req.socket.locals);
+    sails.log.debug("TrackController.location function Started");
 
     const location = req.param("location");
     const userId = req.param("userId");
@@ -45,7 +42,7 @@ module.exports = {
         err.message || err
       );
     }
-
+    sails.log.debug("TrackController.location function Ended");
     return res.ok();
   },
 

@@ -16,6 +16,7 @@ module.exports = {
   },
 
   fn: async function (inputs, exits) {
+    sails.log.debug("join-room helper started");
     let socketRooms = ["kiffgo"];
 
     const kiffgoRoomInfo = await SocketInfo.find({
@@ -33,13 +34,12 @@ module.exports = {
       const roomInfo = await SocketInfo.find({
         userId: inputs.businessId,
       }).limit(1);
-      console.log({ thisisatest: roomInfo });
       if (!_.isEmpty(roomInfo) && roomInfo[0].roomName !== "kiffgo") {
         socketRooms.push(roomInfo[0].roomName);
         sails.sockets.join(roomInfo[0].socketId, roomInfo[0].roomName);
       }
     }
-
+    sails.log.debug("join-room helper ended");
     return exits.success(socketRooms);
   },
 };

@@ -4,12 +4,8 @@ module.exports = {
   description: "sends the task delayed in minutes",
 
   inputs: {
-    task: {
+    delayedTasks: {
       type: "ref",
-      required: true,
-    },
-    businessId: {
-      type: "number",
       required: true,
     },
   },
@@ -19,11 +15,18 @@ module.exports = {
   fn: async function (inputs, exits) {
     sails.log.debug("delay action Started");
     try {
-      const socketRooms = await sails.helpers.joinRoom(inputs.businessId);
+      const tasks = inputs.delayedTasks;
+      for (let i = 0; i < tasks.length; i++) {
+        sails.sockets.join(
+          kiffgoRoomInfo[i].socketId,
+          kiffgoRoomInfo[i].roomName
+        );
 
-      sails.sockets.broadcast(socketRooms, "taskDelay", {
-        task: inputs.task,
-      });
+        const socketRooms = await sails.helpers.joinRoom(tasks[i].businessId);
+        sails.sockets.broadcast(socketRooms, "taskDelay", {
+          task: tasks[i].task,
+        });
+      }
     } catch (err) {
       sails.log.error(
         "delay action:  Task could not be updated due to this err: ",

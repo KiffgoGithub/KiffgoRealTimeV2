@@ -22,7 +22,7 @@ module.exports = {
     try {
       const socketRooms = await sails.helpers.joinRoom(inputs.businessId);
 
-      sails.sockets.blast("taskAdded", {
+      sails.sockets.broadcast(socketRooms, "taskAdded", {
         task: inputs.task,
       });
     } catch (err) {

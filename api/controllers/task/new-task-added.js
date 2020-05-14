@@ -25,9 +25,6 @@ module.exports = {
       sails.sockets.broadcast(socketRooms, "taskAdded", {
         task: inputs.task,
       });
-      sails.io.sockets.in(socketRooms).emit("taskAdded", {
-        task: inputs.task,
-      });
     } catch (err) {
       sails.log.error(
         "new-task-added action:  Task could not be updated due to this err: ",

@@ -17,11 +17,6 @@ module.exports = {
     try {
       const tasks = inputs.delayedTasks;
       for (let i = 0; i < tasks.length; i++) {
-        sails.sockets.join(
-          kiffgoRoomInfo[i].socketId,
-          kiffgoRoomInfo[i].roomName
-        );
-
         const socketRooms = await sails.helpers.joinRoom(tasks[i].businessId);
         sails.sockets.broadcast(socketRooms, "taskDelay", {
           task: tasks[i].task,

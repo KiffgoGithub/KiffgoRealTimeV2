@@ -4,12 +4,15 @@ module.exports = {
   description: "",
 
   inputs: {
-    task: {
+    emitData: {
       type: "ref",
-      required: true,
     },
     businessId: {
       type: "number",
+      required: true,
+    },
+    event: {
+      type: "string",
       required: true,
     },
   },
@@ -22,8 +25,8 @@ module.exports = {
     try {
       const socketRooms = await sails.helpers.joinRoom(inputs.businessId);
 
-      sails.sockets.broadcast(socketRooms, "taskUpdate", {
-        task: inputs.task,
+      sails.sockets.broadcast(socketRooms, inputs.event, {
+        order: inputs.order,
       });
     } catch (err) {
       sails.log.error(

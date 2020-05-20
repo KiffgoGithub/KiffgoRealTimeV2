@@ -46,6 +46,6 @@ module.exports.datastores = {
      *                                                                          *
      ***************************************************************************/
     adapter: "sails-mongo",
-    url: "mongodb://root@localhost/kiffgo-realtime"
-  }
+    url: "mongodb://root@localhost/kiffgo-realtime",
+  },
 };

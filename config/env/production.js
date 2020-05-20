@@ -26,19 +26,19 @@ module.exports = {
       // url:
       //   "mongodb://heroku_gsb54c37:rsnhbu6d5si30vqa12nbbkau46@ds253348.mlab.com:53348/heroku_gsb54c37",
 
-      host: "ds253348.mlab.com",
-      port: "53348",
-      user: "heroku_gsb54c37",
-      password: "rsnhbu6d5si30vqa12nbbkau46",
-      database: "heroku_gsb54c37",
+      host: process.env.MONGODB_HOST, // "ds253348.mlab.com",
+      port: process.env.MONGODB_PORT, // "53348",
+      user: process.env.MONGODB_USER, // "heroku_gsb54c37",
+      password: process.env.MONGODB_PWD, // "rsnhbu6d5si30vqa12nbbkau46",
+      database: process.env.MONGODB_DB, // "heroku_gsb54c37",
     },
   },
 
   session: {
-    secret: "ab24ab301cdbcat31ca74d4f828dc374",
+    secret: process.env.SESSION_SECRET, // "ab24ab301cdbcat31ca74d4f828dc374",
     adapter: "@sailshq/connect-redis", //'redis',
     url:
-      "redis://h:p898ccc262c7a584b5376b9870e1ebbc35797e433659784247b553e48279f2ea1@ec2-35-169-207-205.compute-1.amazonaws.com:16829",
+      process.env.SESSION_URI, // "redis://h:p898ccc262c7a584b5376b9870e1ebbc35797e433659784247b553e48279f2ea1@ec2-35-169-207-205.compute-1.amazonaws.com:16829",
     cookie: {
       secure: true,
     },
@@ -47,7 +47,7 @@ module.exports = {
   sockets: {
     adapter: "socket.io-redis",
     url:
-      "redis://h:p898ccc262c7a584b5376b9870e1ebbc35797e433659784247b553e48279f2ea1@ec2-35-169-207-205.compute-1.amazonaws.com:16829",
+      process.env.SOCKET_URI, // "redis://h:p898ccc262c7a584b5376b9870e1ebbc35797e433659784247b553e48279f2ea1@ec2-35-169-207-205.compute-1.amazonaws.com:16829",
     onlyAllowOrigins: ["http://localhost:3000"],
   },
   /***************************************************************************

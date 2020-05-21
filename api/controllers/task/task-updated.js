@@ -25,7 +25,7 @@ module.exports = {
     try {
       const socketRooms = await sails.helpers.joinRoom(inputs.businessId);
 
-      sails.sockets.broadcast(socketRooms, inputs.event, emitData);
+      sails.sockets.broadcast(socketRooms, inputs.event, input.emitData);
     } catch (err) {
       sails.log.error(
         "task-updated action:  Task could not be updated due to this err: ",

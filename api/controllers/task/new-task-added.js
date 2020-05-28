@@ -22,7 +22,7 @@ module.exports = {
     try {
       const socketRooms = await sails.helpers.joinRoom(inputs.businessId);
 
-      sails.sockets.broadcast(socketRooms, "taskAdded", {
+      sails.sockets.broadcast(socketRooms, "orderAdded", {
         task: inputs.task,
       });
     } catch (err) {
@@ -35,7 +35,7 @@ module.exports = {
     sails.log.debug("new-task-added action Ended");
     return exits.success({
       status: true,
-      message: "Task Added",
+      message: "Order Added",
     });
   },
 };

@@ -261,6 +261,7 @@ module.exports.bootstrap = async function () {
               owner: { $last: "$owner" },
               businessId: { $last: "$businessId" },
               driverDetails: { $last: "$driverDetails" },
+              createdAt: { $last: "$createdAt" },
             },
           },
           {
@@ -271,6 +272,7 @@ module.exports.bootstrap = async function () {
               jobId: "$owner",
               businessId: "$businessId",
               driverDetails: "$driverDetails",
+              createdAt: "$createdAt",
             },
           },
           {

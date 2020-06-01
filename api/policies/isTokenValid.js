@@ -16,14 +16,16 @@ module.exports = async (req, res, next) => {
       var decrypted = decipher.update(req.param("token"), "hex", "utf8");
       decrypted += decipher.final("utf8");
       var splited = decrypted.split("$");
-
-      if (
-        moment(splited[1]).diff(moment()) > 0 &&
-        req.param("userId") == splited[2]
-      ) {
-        return next();
+      if (req.param("userId")) {
+        if (
+          moment(splited[1]).diff(moment()) > 0 &&
+          req.param("userId") == splited[2]
+        ) {
+          return next();
+        }
+      } else {
+        return res.badRequest({ status: false, err: "Missing Param" });
       }
-
       return res.badRequest({ status: false, err: "Token invalid" });
     } else {
       return res.badRequest({ status: false, err: "token required" });

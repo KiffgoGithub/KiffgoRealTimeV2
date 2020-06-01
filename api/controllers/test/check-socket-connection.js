@@ -1,12 +1,16 @@
 module.exports = {
-  friendlyName: "Test one min",
+  friendlyName: "Check socket connection",
 
   description: "",
 
-  fn: async function () {
+  inputs: {},
+
+  exits: {},
+
+  fn: async function (inputs, exits) {
     sails.log("Running custom shell script... (`sails run test-one-min`)");
     await sails.helpers.sendEmitToAllSockets();
 
-    return true;
+    return exits.success();
   },
 };

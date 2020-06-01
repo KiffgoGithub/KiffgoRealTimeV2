@@ -54,4 +54,9 @@ module.exports.routes = {
     action: "task/task-updated",
     csrf: false,
   },
+
+  "POST /test-socket": {
+    action: "test/check-socket-connection",
+    csrf: false,
+  },
 };

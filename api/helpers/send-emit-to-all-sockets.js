@@ -13,7 +13,7 @@ module.exports = {
 
   fn: async function (inputs, exits) {
     try {
-      sails.sockets.blast("stillConnected", {
+      sails.sockets.blast({
         msg: "socket is still connected",
       });
     } catch (e) {

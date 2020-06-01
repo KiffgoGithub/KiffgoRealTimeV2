@@ -4,8 +4,10 @@ module.exports = {
   description: "",
 
   fn: async function () {
-    sails.log("Running custom shell script... (`sails run test-one-min`)");
-    await sails.helpers.sendEmitToAllSockets();
+    if (process.env.NODE_ENV !== "production") {
+      sails.log("Running custom shell script... (`sails run test-one-min`)");
+      await sails.helpers.sendEmitToAllSockets();
+    }
     return true;
   },
 };

@@ -24,13 +24,33 @@ module.exports = async (req, res, next) => {
           return next();
         }
       } else {
+        sails.log.error({
+          msg: "policy violated",
+          status: false,
+          err: "Missing Param",
+        });
         return res.badRequest({ status: false, err: "Missing Param" });
       }
+      sails.log.error({
+        msg: "policy violated",
+        status: false,
+        err: "Token invalid",
+      });
       return res.badRequest({ status: false, err: "Token invalid" });
     } else {
+      sails.log.error({
+        msg: "policy violated",
+        status: false,
+        err: "token required",
+      });
       return res.badRequest({ status: false, err: "token required" });
     }
   } else {
+    sails.log.error({
+      msg: "policy violated",
+      status: false,
+      err: "unauthorized user",
+    });
     return res.badRequest({ status: false, err: "unauthorized user" });
   }
 };

@@ -30,10 +30,17 @@ module.exports = {
         );
       }
     }
+    sails.log.debug({ outsideJoinRoomBusiness: inputs.businessId });
     if (inputs.businessId) {
       const roomInfo = await SocketInfo.find({
         userId: inputs.businessId,
       }).limit(1);
+      sails.log.debug({
+        insideJoinRoomBusiness: {
+          businessId: inputs.businessId,
+          roomInfo: roomInfo,
+        },
+      });
       if (!_.isEmpty(roomInfo) && roomInfo[0].roomName !== "kiffgo") {
         socketRooms.push(roomInfo[0].roomName);
         sails.sockets.join(roomInfo[0].socketId, roomInfo[0].roomName);

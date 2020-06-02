@@ -21,7 +21,8 @@ module.exports = {
 
     try {
       const socketRooms = await sails.helpers.joinRoom(inputs.businessId);
-
+      sails.log.debug("roomsList");
+      sails.log.debug(roomInfo);
       sails.sockets.broadcast(socketRooms, "orderAdded", {
         task: inputs.task,
       });

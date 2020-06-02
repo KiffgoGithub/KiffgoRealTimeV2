@@ -16,7 +16,7 @@ module.exports = async (req, res, next) => {
       var decrypted = decipher.update(req.param("token"), "hex", "utf8");
       decrypted += decipher.final("utf8");
       var splited = decrypted.split("$");
-      if (!_.Nil(req.param("userId"))) {
+      if (!_.isNil(req.param("userId"))) {
         if (
           moment(splited[1]).diff(moment()) > 0 &&
           req.param("userId") == splited[2]

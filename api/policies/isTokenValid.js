@@ -17,7 +17,7 @@ module.exports = async (req, res, next) => {
       decrypted += decipher.final("utf8");
       var splited = decrypted.split("$");
       sails.log.debug({ testste: req.param("userId") });
-      if (!_.isNil(req.param("userId"))) {
+      if (req.param("userId") !== undefined || req.param("userId") !== null) {
         if (
           moment(splited[1]).diff(moment()) > 0 &&
           req.param("userId") == splited[2]

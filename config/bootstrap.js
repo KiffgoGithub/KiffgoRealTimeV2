@@ -30,135 +30,6 @@ module.exports.bootstrap = async function () {
   var start = now.startOf("day").valueOf();
   var end = now.endOf("day").valueOf();
 
-  var test = [
-    {
-      location: {
-        event: "geofence",
-        is_moving: true,
-        uuid: "3c936447-5673-48ea-9feb-f854a649c8e2",
-        timestamp: "2019-07-17T07:36:42.000Z",
-        odometer: 528.9,
-        coords: {
-          latitude: 51.45821434322742,
-          longitude: 0.06421508552174945,
-          accuracy: 4,
-          speed: 7.31,
-          heading: 346.24,
-          altitude: 114.9,
-        },
-        activity: {
-          type: "still",
-          confidence: 100,
-        },
-        battery: {
-          is_charging: false,
-          level: 0.61,
-        },
-        geofence: {
-          identifier: "dropoff",
-          action: "ENTER",
-          extras: {
-            locationIdentifier: "dropoff",
-            jobId: 29,
-            userId: 264,
-          },
-        },
-        extras: {},
-      },
-      jobId: 24,
-      userId: 16,
-      driverDetails: {
-        name: "test",
-        phone: "123123123",
-        vehicleSize: "Large",
-      },
-    },
-    {
-      location: {
-        event: "geofence",
-        is_moving: true,
-        uuid: "3c936447-5673-48ea-9feb-f854a649c8e2",
-        timestamp: "2019-07-17T07:36:42.000Z",
-        odometer: 528.9,
-        coords: {
-          latitude: 51.45821434322742,
-          longitude: 0.06421508552174945,
-          accuracy: 4,
-          speed: 7.31,
-          heading: 346.24,
-          altitude: 114.9,
-        },
-        activity: {
-          type: "still",
-          confidence: 100,
-        },
-        battery: {
-          is_charging: false,
-          level: 0.61,
-        },
-        geofence: {
-          identifier: "dropoff",
-          action: "ENTER",
-          extras: {
-            locationIdentifier: "dropoff",
-            jobId: 29,
-            userId: 264,
-          },
-        },
-        extras: {},
-      },
-      jobId: 24,
-      userId: 15,
-      driverDetails: {
-        name: "test",
-        phone: "123123123",
-        vehicleSize: "Large",
-      },
-    },
-    {
-      location: {
-        event: "geofence",
-        is_moving: true,
-        uuid: "3c936447-5673-48ea-9feb-f854a649c8e2",
-        timestamp: "2019-07-17T07:36:42.000Z",
-        odometer: 528.9,
-        coords: {
-          latitude: 51.45821434322742,
-          longitude: 0.06421508552174945,
-          accuracy: 4,
-          speed: 7.31,
-          heading: 346.24,
-          altitude: 114.9,
-        },
-        activity: {
-          type: "still",
-          confidence: 100,
-        },
-        battery: {
-          is_charging: false,
-          level: 0.61,
-        },
-        geofence: {
-          identifier: "dropoff",
-          action: "ENTER",
-          extras: {
-            locationIdentifier: "dropoff",
-            jobId: 29,
-            userId: 264,
-          },
-        },
-        extras: {},
-      },
-      jobId: 24,
-      userId: 14,
-      driverDetails: {
-        name: "test",
-        phone: "123123123",
-        vehicleSize: "Large",
-      },
-    },
-  ];
-
   sails.io.on("connect", async (socket) => {
     socket.on("business", async (soc) => {
       var check = await SocketInfo.find({ userId: soc.userID });
@@ -200,6 +71,7 @@ module.exports.bootstrap = async function () {
               owner: { $last: "$owner" },
               businessId: { $last: "$businessId" },
               driverDetails: { $last: "$driverDetails" },
+              createdAt: { $last: "$createdAt" },
             },
           },
           {
@@ -210,6 +82,7 @@ module.exports.bootstrap = async function () {
               jobId: "$owner",
               businessId: "$businessId",
               driverDetails: "$driverDetails",
+              createdAt: "$createdAt",
             },
           },
           {

@@ -37,8 +37,7 @@ module.exports = {
   session: {
     secret: process.env.SESSION_SECRET, // "ab24ab301cdbcat31ca74d4f828dc374",
     adapter: "@sailshq/connect-redis", //'redis',
-    url:
-      process.env.SESSION_URI, // "redis://h:p898ccc262c7a584b5376b9870e1ebbc35797e433659784247b553e48279f2ea1@ec2-35-169-207-205.compute-1.amazonaws.com:16829",
+    url: process.env.SESSION_URI, // "redis://h:p898ccc262c7a584b5376b9870e1ebbc35797e433659784247b553e48279f2ea1@ec2-35-169-207-205.compute-1.amazonaws.com:16829",
     cookie: {
       secure: true,
     },
@@ -46,9 +45,7 @@ module.exports = {
 
   sockets: {
     adapter: "socket.io-redis",
-    url:
-      process.env.SOCKET_URI, // "redis://h:p898ccc262c7a584b5376b9870e1ebbc35797e433659784247b553e48279f2ea1@ec2-35-169-207-205.compute-1.amazonaws.com:16829",
-    onlyAllowOrigins: ["http://localhost:3000"],
+    url: process.env.SOCKET_URI, // "redis://h:p898ccc262c7a584b5376b9870e1ebbc35797e433659784247b553e48279f2ea1@ec2-35-169-207-205.compute-1.amazonaws.com:16829",
   },
   /***************************************************************************
    * Set the port in the production environment to 80                        *

@@ -10,6 +10,8 @@ const moment = require("moment");
 const crypto = require("crypto");
 module.exports = async (req, res, next) => {
   // csrf token should contain only uppercase letter, lowercase letters, digits and '-' character
+  sails.log.debug("test policy");
+  sails.log.debug(req.body);
   if (req.param("secretKey") === global.secretKey) {
     if (req.param("token")) {
       var decipher = crypto.createDecipher("aes-256-cbc", "d6F3Efeq");

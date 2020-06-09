@@ -30,8 +30,6 @@ module.exports.bootstrap = async function () {
   var start = now.startOf("day").valueOf();
   var end = now.endOf("day").valueOf();
 
-  sails.log.debug({ testDate: start, testDateTwo: end });
-
   sails.io.on("connect", async (socket) => {
     socket.on("business", async (soc) => {
       var check = await SocketInfo.find({ userId: soc.userID });
@@ -73,6 +71,7 @@ module.exports.bootstrap = async function () {
               owner: { $last: "$owner" },
               businessId: { $last: "$businessId" },
               driverDetails: { $last: "$driverDetails" },
+              createdAt: { $last: "$createdAt" },
             },
           },
           {
@@ -83,6 +82,7 @@ module.exports.bootstrap = async function () {
               jobId: "$owner",
               businessId: "$businessId",
               driverDetails: "$driverDetails",
+              createdAt: "$createdAt",
             },
           },
           {
@@ -156,7 +156,7 @@ module.exports.bootstrap = async function () {
         ])
         .toArray();
       socket.emit("allDrivers", { drivers: drivers });
-      console.log({ allDrivers: drivers });
+      console.log({ thisisKiffgo: drivers });
     });
   });
 };

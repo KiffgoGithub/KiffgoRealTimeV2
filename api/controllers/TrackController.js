@@ -14,6 +14,7 @@ module.exports = {
     const businessId = req.param("businessId");
     const deliveryId = req.param("jobId") || req.param("deliveryId");
     const driverDetails = req.param("driverDetails");
+    const isBeat = req.param("is_beat") ? req.param("is_beat") : false;
 
     sails.log.debug("testHeartbeat", req.param("is_beat"));
 
@@ -37,6 +38,7 @@ module.exports = {
         jobId: deliveryId,
         businessId: businessId,
         driverDetails: driverDetails,
+        isBeat: isBeat,
       });
     } catch (err) {
       sails.log.error(

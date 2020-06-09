@@ -60,7 +60,6 @@ module.exports.bootstrap = async function () {
                 $gte: start,
                 $lte: end,
               },
-              businessId: soc.userID,
             },
           },
           {
@@ -92,6 +91,11 @@ module.exports.bootstrap = async function () {
           },
         ])
         .toArray();
+      for (let i = 0; i < drivers.length; i++) {
+        if (drivers[i].businessId === soc.userID) {
+          socket.emit("allDrivers", { drivers: drivers });
+        }
+      }
       socket.emit("allDrivers", { drivers: drivers });
       console.log({ thisisBusiness: drivers });
     });

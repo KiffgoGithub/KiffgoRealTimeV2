@@ -15,6 +15,8 @@ module.exports = {
     const deliveryId = req.param("jobId") || req.param("deliveryId");
     const driverDetails = req.param("driverDetails");
 
+    sails.log.debug("testHeartbeat", req.param("is_beat"));
+
     // Check if a tracking event is in "allocation" mode
     const allocation = !!req.param("allocation");
     try {

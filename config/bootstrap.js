@@ -96,7 +96,7 @@ module.exports.bootstrap = async function () {
           socket.emit("allDrivers", { drivers: drivers });
         }
       }
-      socket.emit("allDrivers", { drivers: drivers });
+
       console.log({ thisisBusiness: drivers });
     });
     socket.on("kiffgo", async (soc) => {

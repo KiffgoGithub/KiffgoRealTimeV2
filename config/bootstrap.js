@@ -64,7 +64,7 @@ module.exports.bootstrap = async function () {
           },
           {
             $sort: {
-              createdAt: -1,
+              createdAt: 1,
             },
           },
           {
@@ -132,7 +132,7 @@ module.exports.bootstrap = async function () {
           },
           {
             $sort: {
-              createdAt: -1,
+              createdAt: 1,
             },
           },
           {

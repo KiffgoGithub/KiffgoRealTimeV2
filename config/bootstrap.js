@@ -131,6 +131,11 @@ module.exports.bootstrap = async function () {
             },
           },
           {
+            $sort: {
+              createdAt: -1,
+            },
+          },
+          {
             $group: {
               _id: "$userId",
               location: { $last: "$location" },
@@ -150,11 +155,6 @@ module.exports.bootstrap = async function () {
               businessId: "$businessId",
               driverDetails: "$driverDetails",
               createdAt: "$createdAt",
-            },
-          },
-          {
-            $sort: {
-              createdAt: -1,
             },
           },
         ])

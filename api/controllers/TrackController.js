@@ -17,10 +17,10 @@ module.exports = {
     const isBeat = req.param("is_beat") ? req.param("is_beat") : false;
 
     sails.log.debug("testHeartbeat", req.param("is_beat"));
-    sails.log.debug({
-      driverId: req.param("userId"),
-      driverDetails: driverDetails,
-    });
+    // sails.log.debug({
+    //   driverId: req.param("userId"),
+    //   driverDetails: driverDetails,
+    // });
 
     // Check if a tracking event is in "allocation" mode
     const allocation = !!req.param("allocation");

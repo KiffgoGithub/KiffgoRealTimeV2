@@ -12,7 +12,6 @@ module.exports = async (req, res, next) => {
   // csrf token should contain only uppercase letter, lowercase letters, digits and '-' character
   sails.log.debug({
     driverId: req.param("userId"),
-    driverDetails: eeq.param("driverDetails"),
   });
   if (req.param("secretKey") === global.secretKey) {
     if (req.param("token")) {

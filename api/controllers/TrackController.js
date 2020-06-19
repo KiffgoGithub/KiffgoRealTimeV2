@@ -11,7 +11,7 @@ module.exports = {
 
     const location = req.param("location");
     const userId = req.param("userId");
-    const businessId = req.param("businessId");
+    const businessId = req.param("businessId") ? req.param("businessId") : null;
     const deliveryId = req.param("jobId") || req.param("deliveryId");
     const driverDetails = req.param("driverDetails");
     const isBeat = req.param("is_beat") ? req.param("is_beat") : false;
